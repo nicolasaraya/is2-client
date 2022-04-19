@@ -1,10 +1,11 @@
 import logo from './logo.svg';
 import './App.css';
+import FormEncusta from './components/form-encuesta';
 
 function App() {
   return (
     <div className="App">
-      <h1>Hola Mundo!</h1>
+      <FormEncusta></FormEncusta>
     </div>
   );
 }
