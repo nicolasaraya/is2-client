@@ -1,3 +1,9 @@
+*{
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -5,9 +11,123 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  
 }
 
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+.new-form__container{
+  display: flex;
+  flex-direction: column;
+}
+
+.new-form__title-container{
+  background-color: #aaa;
+  border-radius: 15px;
+  padding: 20px;
+  width: 60%;
+  min-width: 600px;
+  margin: 20px auto;
+  padding: 15px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}
+
+::placeholder{
+  color: white;
+}
+
+input{
+  padding: 10px;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+
+.new-form__title-input{
+  height: 50px;
+  font-size: 24px;
+  padding: 10px;
+  color: white;
+  background-color: transparent;
+  border: none;
+}
+
+.new-form__description-input{
+  padding: 0 10px;
+  color: white;
+  font-size: 12px;
+  background-color: transparent;
+  border: none;
+}
+
+.new-form__add-pregunta-btn{
+  border: none;
+  background-color: rgb(54, 128, 197);
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}
+
+.new-pregunta__container{
+  background-color: #aaa;
+  width: 60%;
+  min-width: 600px;
+  margin: 0 auto 10px auto;
+  border-radius: 15px;
+  padding: 15px;
+  color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+}
+
+.new-pregunta__header{
+  display: flex;
+  align-items: center;
+}
+
+.new-pregunta__title-index{
+  font-size: 16px;
+  transform: translateY(-3px);
+}
+
+.new-pregunta__title-input{
+  flex-grow: 1;
+  font-size: 16px;
+}
+
+.new-pregunta__delete-btn{
+  padding: 0 5px;
+  height: 20px;
+  margin: 0 5px;
+  border: none;
+  border-radius: 5px;
+  background-color: red;
+  color: white;
+  cursor: pointer;
+}
+.new-pregunta__edit-btn{
+  padding: 0 5px;
+  height: 20px;
+  border: none;
+  border-radius: 5px;
+  background-color: blue;
+  color: white;
+  cursor: pointer;
+}
+
+
+
