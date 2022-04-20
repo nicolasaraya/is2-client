@@ -86,13 +86,13 @@ input{
 .new-pregunta__container{
   background-color: #888;
   width: 55%;
-  min-width: 600px;
+  min-width: 500px;
+  max-height: 60px;
   margin: 0 auto 10px auto;
   border-radius: 15px;
   padding: 15px;
   color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
-  cursor: pointer;
 }
 
 .new-pregunta__header{
@@ -124,7 +124,16 @@ input{
 .pregunta-activa{
   transition: all .2s ease;
   background-color: rgb(98, 93, 139);
-  height: 150px;
+  max-height: 700px;
 }
 
-
+.new-pregunta__add-alter-btn{
+  padding: 5px;
+  text-align: right;
+  border: none;
+  font-size: 16px;
+  border-radius: 5px;
+  background-color: transparent;
+  color: white;
+  cursor: pointer;
+}
