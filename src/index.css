@@ -29,7 +29,7 @@ textarea:focus, input:focus{
 }
 
 .new-form__title-container{
-  background-color: #aaa;
+  background-color: rgb(98, 93, 139);
   border-radius: 15px;
   padding: 20px;
   width: 60%;
@@ -73,9 +73,9 @@ input{
 .new-form__add-pregunta-btn{
   border: none;
   background-color: rgb(54, 128, 197);
-  margin: 0 auto;
+  margin: 10px auto;
   border-radius: 5px;
-  padding: 5px;
+  padding: 10px;
   color: white;
   font-size: 16px;
   font-weight: 600;
@@ -84,14 +84,15 @@ input{
 }
 
 .new-pregunta__container{
-  background-color: #aaa;
-  width: 60%;
+  background-color: #888;
+  width: 55%;
   min-width: 600px;
   margin: 0 auto 10px auto;
   border-radius: 15px;
   padding: 15px;
   color: white;
   box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+  cursor: pointer;
 }
 
 .new-pregunta__header{
@@ -110,24 +111,20 @@ input{
 }
 
 .new-pregunta__delete-btn{
-  padding: 0 5px;
-  height: 20px;
-  margin: 0 5px;
+  padding: 5px;
+  text-align: right;
   border: none;
+  font-size: 16px;
   border-radius: 5px;
-  background-color: red;
-  color: white;
-  cursor: pointer;
-}
-.new-pregunta__edit-btn{
-  padding: 0 5px;
-  height: 20px;
-  border: none;
-  border-radius: 5px;
-  background-color: blue;
+  background-color: transparent;
   color: white;
   cursor: pointer;
 }
 
+.pregunta-activa{
+  transition: all .2s ease;
+  background-color: rgb(98, 93, 139);
+  height: 150px;
+}
 
 

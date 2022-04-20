@@ -1,42 +1,45 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import NewPregunta from "./new-pregunta";
 
 const NewForm = () => {
 
     const[preguntasCounter, setPreguntasCounter] = useState(0);
-    const [preguntas, setPreguntas] =useState([]);
+    const [preguntas, setPreguntas] = useState([]);
+    const [preguntaActiva, setPreguntaActiva] = useState(document.createElement("div"));
+
 
     const addPregunta = () =>{
         const aux=preguntasCounter+1;
+        const id= "new-pregunta-"+preguntasCounter;
+        const title= "Pregunta "+(preguntasCounter+1);
         setPreguntasCounter(aux);
-        console.log(preguntasCounter);
         setPreguntas(
             [
                 ...preguntas,
                 {
-                    title:"Pregunta "+(preguntasCounter+1),
-                    id: "new-pregunta-"+preguntasCounter,
+                    title: title,
+                    id: id,
                 }
             ]
         )
-        console.log(preguntas);
+
     }
+
 
     const rmvPregunta = (id) =>{
         console.log("trying to remove id: "+id);
         var aux=preguntas;
-        var index;
-        aux.map((val,indexedDB)=>{
-            if(val.id===id) index=indexedDB;
+        var ind;
+        aux.map((val,index)=>{
+            if(val.id===id) ind=index;
         })
-        aux.splice(index,1);
+        aux.splice(ind,1);
         setPreguntas(
             [
                 ...aux,
             ]
         )
     }
-    //console.log(preguntas);
 
 
     return(
