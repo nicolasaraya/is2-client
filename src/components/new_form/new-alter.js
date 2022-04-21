@@ -3,7 +3,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 const   NewAlter = (props) => {
 
-    const {title, id, index, rmvAlter, idPregunta} = {...props};
+    const {title, id, index, rmvAlter, idPregunta, handleAlterChange} = {...props};
 
     const handleDelete = () => {
         rmvAlter(id);
@@ -18,7 +18,7 @@ const   NewAlter = (props) => {
     return(
         <div className="new-alter__container " id={id}>
                 <div className="new-alter__header">
-                    <input className="new-alter__title-input" placeholder={"Alternativa "+index} onClick={(e)=>stopPropagation(e)}></input>
+                    <input className="new-alter__title-input" placeholder={"Alternativa "+index} onClick={(e)=>stopPropagation(e)} onChange={(e)=>handleAlterChange(id,e.target.value)}></input>
                     <button className="new-alter__delete-btn" onClick={(e)=>{
                         e.stopPropagation();
                         handleDelete();

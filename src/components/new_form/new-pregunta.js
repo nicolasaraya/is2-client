@@ -4,11 +4,15 @@ import NewPreguntaHeader from "./new-pregunta-header";
 
 const   NewPregunta = (props) => {
 
-    const {title, id, rmvPregunta, index} = {...props};
+    const { id, rmvPregunta, index, addAlterToPregunta, preguntaTitleChange, alterChange, rmvAlterFromPregunta} = {...props};
 
     const[alterCounter, setAlterCounter] = useState(0);
 
     const [alter, setAlter] = useState([]);
+
+    const handleAddAlterToPregunta=(alter)=>{
+        addAlterToPregunta(id,alter);
+    }
 
     const rmvAlter = (id) => {
         var aux=alter;
@@ -22,27 +26,44 @@ const   NewPregunta = (props) => {
                 ...aux,
             ]
         )
+        rmvAlterFromPregunta(id,alter);
     }
 
+    const handleTitleChange = (title) => {
+        preguntaTitleChange(id, title);
+    }
     const handleDelete= () => {
         rmvPregunta(id);
     }
 
+    const delay = ms => new Promise(res => setTimeout(res, ms));
+
+    const hideFullAlterMsj = async()=>{
+        await delay(3000);
+        document.getElementById(id+"-full-alter-msj").classList.remove("full-alter-msj-show");
+    }
+
     const addAlter = () =>{
-        const aux=alterCounter+1;
-        const id= "new-alter-"+alterCounter;
-        const title= "Alternativa "+(alterCounter+1);
-        setAlterCounter(aux);
-        setAlter(
-            [
+        if(alter.length<5){
+            const aux1=alterCounter+1;
+            const identifier= id+"-new-alter-"+alterCounter;
+            const title= "Alternativa "+(alterCounter+1);
+            setAlterCounter(aux1);
+            const aux2 = [
                 ...alter,
                 {
-                    title: title,
-                    id: id,
+                    title: "Alternativa por defecto",
+                    id: identifier,
                 }
             ]
-        )}
-        
+            setAlter(aux2);
+            handleAddAlterToPregunta(aux2);
+        }else{
+            document.getElementById(id+"-full-alter-msj").classList.add("full-alter-msj-show");
+            hideFullAlterMsj();
+        }
+    }
+
     const toggleActive = () =>{
         const preguntaActiva = document.getElementsByClassName('pregunta-activa');
         const estaPregunta = document.getElementById(id);
@@ -55,14 +76,19 @@ const   NewPregunta = (props) => {
 
     }
 
+    const handleAlterChange = (idAlter, title) => {
+        alterChange(id,idAlter,title);
+    }
+
     return(
         <div className="new-pregunta__container " id={id} onClick={toggleActive}>
-            <NewPreguntaHeader handleDelete={handleDelete} addAlter={addAlter} index={index} id={id}/>
+            <p className="full-alter-msj" id={id+"-full-alter-msj"}>Puede haber un máximo de 5 alternativas...</p>
+            <NewPreguntaHeader handleDelete={handleDelete} addAlter={addAlter} index={index} id={id} handleTitleChange={handleTitleChange}/>
             <div className="new-pregunta__options">
             {
                 alter.map((val,index)=>{
                     return(
-                        <NewAlter title={val.title} id={val.id} key={val.id} index={index+1} rmvAlter={rmvAlter} idPregunta={id}></NewAlter>
+                        <NewAlter title={val.title} id={val.id} key={val.id} index={index+1} rmvAlter={rmvAlter} idPregunta={id} handleAlterChange={handleAlterChange}></NewAlter>
                     );
                 })
             }

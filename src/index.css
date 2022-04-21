@@ -130,6 +130,16 @@ input{
     border: 5px solid rgb(98, 93, 139);
   }
 
+.full-alter-msj{
+  display: none;
+}
+
+.full-alter-msj-show{
+  display: contents;
+  color: rgb(255, 81, 81);
+  font-size: 12px;
+}
+
 .new-pregunta__header{
   display: flex;
   align-items: center;
@@ -162,7 +172,6 @@ input{
   display: contents;
 }
 
-
 .new-pregunta__add-alter-btn{
   padding: 5px;
   margin: 0 10px;
@@ -194,5 +203,23 @@ input{
   font-size: 16px;
   background-color: transparent;
   color: white;
+  cursor: pointer;
+}
+
+
+
+.send-btn{
+  width: fit-content;
+  padding: 10px 15px;
+  background-color: green;
+  border: none;
+  border-radius: 50%;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
+  color: white;
+  position: fixed;
+  bottom: 30px;
+  right: 50px;
+  font-size: 36px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .5);
   cursor: pointer;
 }
