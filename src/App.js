@@ -4,6 +4,7 @@ import NewForm from './components/new_form/new-form';
 function App() {
   return (
     <div className="App">
+      <div className='page-navbar'></div>
       <NewForm></NewForm>
     </div>
   );

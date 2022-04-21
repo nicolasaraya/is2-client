@@ -1,21 +1,37 @@
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPen,faTrashCan } from '@fortawesome/free-solid-svg-icons';
 import { useEffect, useState } from "react";
 import NewAlter from "./new-alter";
+import NewPreguntaHeader from "./new-pregunta-header";
 
 const   NewPregunta = (props) => {
 
-    const {title, id, rmv, index} = {...props};
-    const[alterCounter, setAlterCounter] = useState(0);
-    const [alter, setAlter] = useState([]);
-    const handleDelete= () => {
+    const {title, id, rmvPregunta, index} = {...props};
 
-        rmv(id);
+    const[alterCounter, setAlterCounter] = useState(0);
+
+    const [alter, setAlter] = useState([]);
+
+    const rmvAlter = (id) => {
+        var aux=alter;
+        var ind;
+        aux.map((val,index)=>{
+            if(val.id===id) ind=index;
+        })
+        aux.splice(ind,1);
+        setAlter(
+            [
+                ...aux,
+            ]
+        )
     }
+
+    const handleDelete= () => {
+        rmvPregunta(id);
+    }
+
     const addAlter = () =>{
         const aux=alterCounter+1;
         const id= "new-alter-"+alterCounter;
-        const title= "Alter "+(alterCounter+1);
+        const title= "Alternativa "+(alterCounter+1);
         setAlterCounter(aux);
         setAlter(
             [
@@ -26,6 +42,7 @@ const   NewPregunta = (props) => {
                 }
             ]
         )}
+        
     const toggleActive = () =>{
         const preguntaActiva = document.getElementsByClassName('pregunta-activa');
         const estaPregunta = document.getElementById(id);
@@ -39,28 +56,17 @@ const   NewPregunta = (props) => {
     }
 
     return(
-        <div className="new-pregunta__container " id={id} >
-            <div className="new-pregunta__header">
-                <p className="new-pregunta__title-index">{index})</p>
-                <input className="new-pregunta__title-input" placeholder={"Pregunta "+index+"..."}></input>
-                <button className="new-pregunta__add-alter-btn" onClick={addAlter} ><b>+</b></button>
-                <button className="new-pregunta__delete-btn" onClick={(e)=>{
-                    e.stopPropagation();
-                    handleDelete();
-                }}><FontAwesomeIcon icon={faTrashCan} /></button>
-                <button className="new-pregunta__delete-btn" onClick={toggleActive}><FontAwesomeIcon icon={faPen} /></button>
-            </div>
-            <br></br>
+        <div className="new-pregunta__container " id={id} onClick={toggleActive}>
+            <NewPreguntaHeader handleDelete={handleDelete} addAlter={addAlter} index={index} id={id}/>
             <div className="new-pregunta__options">
             {
                 alter.map((val,index)=>{
                     return(
-                        <NewAlter title={val.title} id={val.id} key={val.id} index={index+1}></NewAlter>
+                        <NewAlter title={val.title} id={val.id} key={val.id} index={index+1} rmvAlter={rmvAlter} idPregunta={id}></NewAlter>
                     );
                 })
             }
             </div>
-            <br></br>
         </div>
     )
 
