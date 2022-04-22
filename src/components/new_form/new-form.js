@@ -21,7 +21,7 @@ const NewForm = () => {
                 {
                     title: "Pregunta por defecto",
                     id: id,
-                    alter: [],
+                    alter: []
                 }
             ]
         )
@@ -35,7 +35,7 @@ const NewForm = () => {
         })
         aux[ind].alter=alter;
         setPreguntas([
-            ...aux,
+            ...aux
         ])
     }
 
@@ -48,7 +48,7 @@ const NewForm = () => {
         aux.splice(ind,1);
         setPreguntas(
             [
-                ...aux,
+                ...aux
             ]
         )
     }
@@ -60,10 +60,9 @@ const NewForm = () => {
             if(val.id===id) ind=index;
         })
         aux[ind].title=title;
-        console.log(aux[ind].title);
         setPreguntas(
             [
-                ...aux,
+                ...aux
             ]
         )
     }
@@ -79,7 +78,7 @@ const NewForm = () => {
         })
         setPreguntas(
             [
-                ...aux,
+                ...aux
             ]
         );
     }
@@ -91,19 +90,27 @@ const NewForm = () => {
         })
         setPreguntas(
             [
-                ...aux,
+                ...aux
             ]
         )
 
     }
 
-    const handleSubmit = () => {
-        const data = [
+    const handleSubmit = async () => {
+        
+        const form = {
             title,
             description,
-            preguntas,
-        ]
-        console.log(data);
+            preguntas
+        }
+        const formJson = JSON.stringify(form);
+        const res = await fetch('http://localhost:5000/newForm',{
+            'method' : 'POST',
+            headers : {
+                'Content-Type':'application/json'
+            },
+            body:formJson
+        })
     }
 
     return(

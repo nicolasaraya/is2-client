@@ -23,7 +23,7 @@ const   NewPregunta = (props) => {
         aux.splice(ind,1);
         setAlter(
             [
-                ...aux,
+                ...aux
             ]
         )
         rmvAlterFromPregunta(id,alter);
@@ -53,7 +53,7 @@ const   NewPregunta = (props) => {
                 ...alter,
                 {
                     title: "Alternativa por defecto",
-                    id: identifier,
+                    id: identifier
                 }
             ]
             setAlter(aux2);
