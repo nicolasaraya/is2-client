@@ -4,7 +4,6 @@ import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
 import NewPregunta from "./new-pregunta";
 
 const NewForm = () => {
-
     const[preguntasCounter, setPreguntasCounter] = useState(0);
     const [preguntas, setPreguntas] = useState([]);
     const [title, setTitle] = useState("Encuesta por defecto");
@@ -12,8 +11,8 @@ const NewForm = () => {
 
     const addPregunta = async () =>{
         const aux=preguntasCounter+1;
-        const id= "new-pregunta-"+preguntasCounter;
-        const title= "Pregunta "+(preguntasCounter+1);
+        const id = "new-pregunta-"+preguntasCounter;
+        const title = "Pregunta "+(preguntasCounter+1);
         setPreguntasCounter(aux);
         await setPreguntas(
             [
@@ -105,7 +104,7 @@ const NewForm = () => {
         }
         const formJson = JSON.stringify(form);
         const res = await fetch('http://localhost:5000/newForm',{
-            'method' : 'POST',
+           'method' : 'POST',
             headers : {
                 'Content-Type':'application/json'
             },
