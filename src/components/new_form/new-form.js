@@ -107,27 +107,31 @@ const NewForm = () => {
             description,
             preguntas
         }
+        var formId;
         console.log(form);
         const formJson = JSON.stringify(form);
-        // const res = await fetch('http://localhost:5000/newForm',{
-        //    'method' : 'POST',
-        //     headers : {
-        //         'Content-Type':'application/json'
-        //     },
-        //     body:formJson
-        // })
+        setLoading(true);
+        const res = await fetch('http://localhost:5000/newForm',{
+           'method' : 'POST',
+            headers : {
+                'Content-Type':'application/json'
+            },
+            body:formJson
+        }).then(response=>response.json()
+        .then(json=>{
+            setLoading(false);
+            formId=json;
+            console.log(json);
+        }))
 
         setPreguntasCounter(0);
         setTitle("Encuesta por defecto");
         setDescription("Descripción por defecto");
         setPreguntas([]);
-        document.getElementsByClassName("new-form__title-input")[0].value="";
-        document.getElementsByClassName("new-form__description-input")[0].value="";
 
-        setLoading(true);
-        await new Promise(r => setTimeout(r, 2000));
-        setLoading(false);
-        navigate('/submited-form', {replace: true});
+        
+        //await new Promise(r => setTimeout(r, 2000));
+        navigate(`/submited-form/${formId}`, {replace: true});
 
     }
 
