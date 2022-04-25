@@ -14,7 +14,7 @@ function App() {
           <Route path='/' element={<NewForm/>}/>
           <Route path= '/form' element={<Form/>}/>
           <Route path= '/form/:id' element={<Form/>}/>
-          <Route path='/submited-form' element={<SubmitedForm/>}/>
+          <Route path='/submited-form/:formId' element={<SubmitedForm/>}/>
         </Routes>
       </BrowserRouter>
       </div>
