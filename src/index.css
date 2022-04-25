@@ -127,13 +127,14 @@ input{
   }
 
   .new-pregunta__container::-webkit-scrollbar-thumb {
-    background-color: rgb(98, 93, 139);;
+    background-color: white;
     border-radius: 10px;
     border: 5px solid rgb(98, 93, 139);
   }
 
 .full-alter-msj{
   display: none;
+  position: relative;
 }
 
 .full-alter-msj-show{
@@ -169,7 +170,7 @@ input{
 
 .new-pregunta__title-input::placeholder{
   color: #333;
-  opacity: .7;
+  opacity: .8;
 }
 
 .pregunta-activa{
