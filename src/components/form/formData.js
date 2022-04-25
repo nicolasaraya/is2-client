@@ -1,6 +1,6 @@
 const formData = {
-    title: 'BUENA NACHO QL CHUPAME EL PICO',
-    description: 'era bromita breooooooo',
+    title: 'Encuesta 1',
+    description: 'Esta es la descripcion de la encuesta 1 para la asignatura de ingenieria de software dos',
     preguntas: [
         {
             title: '¿Te gusta el pancito?',

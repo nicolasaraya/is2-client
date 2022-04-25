@@ -283,6 +283,19 @@ input{
 .form-pregunta-index{
   color: #666;
 }
+.form-title{
+  color: rgb(98, 93, 139);
+  font-size: 25px;
+  font-weight: 600;
+}
+.form-description{
+  color: #333;
+  font-size: 12px;
+  font-weight: 400;
+  max-width: 300px;
+  margin-bottom: 10px;
+}
+
 
 .form-card__container{
   background-color: rgb(98, 93, 139);
