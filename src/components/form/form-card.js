@@ -1,0 +1,91 @@
+
+const FormCard = (props) => {
+
+    const {pregunta, index, setIndex, length, setRespuestas, respuestas} = {...props};
+    const toggleCheck = (e,id) =>{
+        const alternativas = document.getElementsByClassName("alter-pregunta-"+pregunta.id);
+        const estaAlternativa = document.getElementById("alter-checkbox-"+id)
+        for(var i=0;i<alternativas.length;i++){
+            if(alternativas[i]!==estaAlternativa && alternativas[i].checked===true){
+                 alternativas[i].checked=false;
+            }
+        }
+        var auxAlter
+        auxAlter = respuestas
+        if(!estaAlternativa.checked) auxAlter[index-1] = null
+        else auxAlter[index-1] = id
+        setRespuestas(auxAlter)
+    }
+    
+    const changeAlter = (index) =>{
+        const alternativas = document.getElementsByClassName("alter-pregunta-"+pregunta.id);
+        if(respuestas[index-1]=== null){
+            for(var i=0;i<alternativas.length;i++){
+                alternativas[i].checked=false;
+            } 
+        }
+        else{
+            const estaAlternativa = document.getElementById("alter-checkbox-"+respuestas[index-1])
+            for(i=0;i<alternativas.length;i++){
+                if(alternativas[i]===estaAlternativa){
+                    alternativas[i].checked=true;
+                }
+                else alternativas[i].checked=false;
+            } 
+        }
+    }
+    const handleBack = () => {
+        const aux = index - 1;
+        setIndex(aux);
+        changeAlter(aux)
+    }
+
+    const handleNext = () => {
+        const aux = index +1;
+        setIndex(aux);
+        changeAlter(aux)
+    }
+
+    const handleSubmit = () => {
+
+        if(respuestas.includes(null)){
+            alert('No ha respondido todas las preguntas')
+        }
+        else console.log(respuestas);
+    }
+    return(
+        <div className="form-card__container">
+            <p className="form-card__title">{index}) {pregunta.title}</p>
+            <div className="form-card__alter-container">
+                {
+                    pregunta.alter.map((val,index)=>{
+                        return(
+                            <div className="form-card__alter" key={val.id}>
+                                <input type='checkbox' className={"form-card__alter-checkbox alter-pregunta-"+pregunta.id} onChange={(e)=>toggleCheck(e,val.id)} id={'alter-checkbox-'+val.id}></input>
+                                <p className="form-card__alter-title">{val.title}</p>    
+                            </div>
+                        )
+                    })
+                }
+            </div>
+            {
+                index===1
+                ? <div className="form-card__btn-container">
+                    <button className="form-card__next-btn-only" onClick={handleNext}>Next{" >>"}</button>
+                </div>
+                : index===length
+                    ? <div className="form-card__btn-container">
+                        <button className="form-card__back-btn" onClick={handleBack}>{"<< "}Back</button>
+                        <button className="form-card__send-btn" onClick={handleSubmit}>Send</button>
+                    </div>
+                    : <div className="form-card__btn-container">
+                        <button className="form-card__back-btn" onClick={handleBack}>{"<< "}Back</button>
+                        <button className="form-card__next-btn" onClick={handleNext}>Next{" >>"}</button>
+                    </div>
+                
+            }
+        </div>
+    )
+}
+
+export default FormCard;
