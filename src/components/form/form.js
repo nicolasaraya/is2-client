@@ -1,23 +1,47 @@
-import formData from "./formData";
 import FormCard from "./form-card";
-import { useState } from "react";
-import { clear } from "@testing-library/user-event/dist/clear";
+import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
-const Form = () => {
-
-    const [index, setIndex] = useState(1);
-    const [respuestas, setRespuestas] = useState(new Array(formData.preguntas.length))
+const Form = (props) => {
     const {id} = useParams();
 
+    const [datos, setDatos] = useState({
+        title : "",
+        description : "",
+        preguntas : [
+            {
+                title : "",
+                id : "",
+                alter : [
+                    {
+                        title : "",
+                        id : ""
+                    }
+                ]
+            }
+        ]
+    });
+    useEffect(() => {
+        fetch('http://localhost:5000/getForm/' + id, {
+            'method' : 'GET' 
+        }).then (response => response.json().then(data => {
+            setDatos(data);
+        }));
+    }, []);
+    //console.log(datos)
+
+
+    const [index, setIndex] = useState(1);
+    const [respuestas, setRespuestas] = useState(new Array(datos.preguntas.length));
+
     return (
-        <div className="form__container">
-            <p className="form-title"> {formData.title}</p>
-            <p className="form-description"> {formData.description}</p>
-            <p className="form-pregunta-index">{index}/{formData.preguntas.length}</p>
-            <FormCard pregunta={formData.preguntas[index-1]} index={index} setIndex={setIndex} length={formData.preguntas.length} respuestas={respuestas} setRespuestas= {setRespuestas}></FormCard>
+        <div className = "form__container">
+            <p className="form-title"> {datos.title}</p>
+            <p className="form-description"> {datos.description}</p>
+            <p className="form-pregunta-index">{index}/{datos.preguntas.length}</p>
+            <FormCard pregunta={datos.preguntas[index-1]} index={index} setIndex={setIndex} length={datos.preguntas.length} respuestas={respuestas} setRespuestas= {setRespuestas}></FormCard>
         </div>
     )
 }
 
-export default Form; 
+export default Form;

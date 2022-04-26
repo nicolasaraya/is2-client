@@ -47,8 +47,11 @@ const FormCard = (props) => {
     }
 
     const handleSubmit = () => {
-
-        if(respuestas.includes(null)){
+        var banderita = 0;
+        for(var  i = 0 ; i < respuestas.length ; i++){
+            if(respuestas[i] == null ) banderita = 1;
+        }
+        if(banderita){
             alert('No ha respondido todas las preguntas')
         }
         else console.log(respuestas);
