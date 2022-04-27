@@ -12,6 +12,7 @@ const NewForm = () => {
     const [title, setTitle] = useState("Encuesta por defecto");
     const [description, setDescription] = useState("Descripción por defecto");
     const [loading, setLoading]  = useState(false);
+    
     const navigate = useNavigate();
 
     const addPregunta = async () =>{
@@ -130,7 +131,6 @@ const NewForm = () => {
         setPreguntas([]);
 
         
-        //await new Promise(r => setTimeout(r, 2000));
         navigate(`/submited-form/${formId}`, {replace: true});
 
     }

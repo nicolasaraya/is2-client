@@ -279,6 +279,7 @@ input{
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
 }
 
 .form-pregunta-index{
@@ -288,12 +289,13 @@ input{
   color: rgb(98, 93, 139);
   font-size: 25px;
   font-weight: 600;
+  max-width: 500px;
 }
 .form-description{
   color: #333;
   font-size: 12px;
   font-weight: 400;
-  max-width: 300px;
+  max-width: 500px;
   margin-bottom: 10px;
 }
 
@@ -373,6 +375,16 @@ input{
   margin-left: auto;
 }
 
+.form-card__send-btn-only{
+  background-color: transparent;
+  border: none;
+  color: white;
+  font-size: 24px;
+  font-weight: 800;
+  cursor: pointer;
+  margin-left: auto;
+}
+
 .form-card__send-btn{
   background-color: transparent;
   border: none;
@@ -429,7 +441,22 @@ input{
   font-size: 20px;
   margin-right: 10px;
   cursor: pointer;
+  transition: all .2s ease;
 }
+
+.submited-form__copy-btn:hover{
+  background-color: rgb(95, 62, 134);
+}
+
+.submited-form__copy-btn:active{
+  transform: scale(.8);
+}
+
+.clipboard-icon{
+  font-size: 20px;
+  margin-right: 5px;
+}
+
 
 .submited-form__share-link{
   color: #333;

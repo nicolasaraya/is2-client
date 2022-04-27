@@ -1,8 +1,17 @@
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faClipboard, faCopy } from "@fortawesome/free-solid-svg-icons";
 import { useParams } from "react-router-dom";
 
 const SubmitedForm = () => {
 
     const {formId} = useParams();
+
+    const link = "http://localhost:3000/form/"+formId;
+
+    const copyLink = () => {
+        navigator.clipboard.writeText(link);
+    }
+
     return (
         <div className="submited-form-page">
             <p className="submited-form-alert">Your form has been submited</p>
@@ -11,8 +20,8 @@ const SubmitedForm = () => {
             <div className="submited-form__share-container">
                 <p className="submited-form-share-alert">share your form!</p>
                 <div className="submited-form__btn-container">
-                    <button className="submited-form__copy-btn">copy</button>
-                    <input value={"http://localhost:3000/form/"+formId} readOnly className="submited-form__share-link"></input>
+                    <button className="submited-form__copy-btn" onClick={copyLink}><FontAwesomeIcon icon={faClipboard} className="clipboard-icon"/> copy</button>
+                    <input value={link} readOnly className="submited-form__share-link"></input>
                 </div>
             </div>
         </div>

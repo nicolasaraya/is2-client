@@ -1,7 +1,12 @@
+import { setSelectionRange } from "@testing-library/user-event/dist/utils";
+import { useNavigate } from "react-router-dom";
+
 
 const FormCard = (props) => {
 
-    const {pregunta, index, setIndex, length, setRespuestas, respuestas} = {...props};
+    const {pregunta, index, setIndex, length, setRespuestas, respuestas ,setLoading} = {...props};
+
+    const navigate = useNavigate();
     const toggleCheck = (e,id) =>{
         const alternativas = document.getElementsByClassName("alter-pregunta-"+pregunta.id);
         const estaAlternativa = document.getElementById("alter-checkbox-"+id)
@@ -46,7 +51,7 @@ const FormCard = (props) => {
         changeAlter(aux)
     }
 
-    const handleSubmit = () => {
+    const handleSubmit = async() => {
         var banderita = 0;
         for(var  i = 0 ; i < respuestas.length ; i++){
             if(respuestas[i] == null ) banderita = 1;
@@ -54,7 +59,14 @@ const FormCard = (props) => {
         if(banderita){
             alert('No ha respondido todas las preguntas')
         }
-        else console.log(respuestas);
+        else {
+            console.log(respuestas);
+            setLoading(true);
+            await new Promise(r => setTimeout(r, 2000));
+            setLoading(false);
+            navigate(`/submited-answer`, {replace: true});
+        }
+
     }
     return(
         <div className="form-card__container">
@@ -72,7 +84,11 @@ const FormCard = (props) => {
                 }
             </div>
             {
-                index===1
+                length===1
+                ? <div className="form-card__btn-container">
+                    <button className="form-card__send-btn-only" onClick={handleSubmit}>Send{" >>"}</button>
+                </div>
+                : index===1
                 ? <div className="form-card__btn-container">
                     <button className="form-card__next-btn-only" onClick={handleNext}>Next{" >>"}</button>
                 </div>
