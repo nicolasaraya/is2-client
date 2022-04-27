@@ -69,7 +69,7 @@ const FormCard = (props) => {
                      'Content-Type':'application/json'
                  },
                  body:data
-             }).then(setLoading(false));
+             });
             
             navigate(`/submited-answer`, {replace: true});
         }
