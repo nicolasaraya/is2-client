@@ -60,10 +60,17 @@ const FormCard = (props) => {
             alert('No ha respondido todas las preguntas')
         }
         else {
-            console.log(respuestas);
             setLoading(true);
-            await new Promise(r => setTimeout(r, 2000));
-            setLoading(false);
+            console.log(respuestas);
+            const data = JSON.stringify(respuestas);
+            const res = await fetch('http://localhost:5000/newRespuesta',{
+                'method' : 'POST',
+                 headers : {
+                     'Content-Type':'application/json'
+                 },
+                 body:data
+             }).then(setLoading(false));
+            
             navigate(`/submited-answer`, {replace: true});
         }
 
