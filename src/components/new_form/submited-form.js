@@ -6,7 +6,7 @@ const SubmitedForm = () => {
 
     const {formId} = useParams();
 
-    const link = "http://localhost:3000/form/"+formId;
+    const link = "http://localhost:3000/#/form/"+formId;
 
     const copyLink = () => {
         navigator.clipboard.writeText(link);
