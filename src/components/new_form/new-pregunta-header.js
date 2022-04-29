@@ -15,7 +15,7 @@ const NewPreguntaHeader = (props) => {
         <div className="new-pregunta__header">
             <div className="new-pregunta__title-container">
                 <p className="new-pregunta__title-index">{index})</p>
-                <input className="new-pregunta__title-input" placeholder={"Pregunta "+index+"..."} onClick={(e)=> stopPropagation(e)} onChange={(e)=>handleTitleChange(e.target.value)}></input>
+                <input maxLength={100} className="new-pregunta__title-input" placeholder={"Pregunta "+index+"..."} onClick={(e)=> stopPropagation(e)} onChange={(e)=>handleTitleChange(e.target.value)}></input>
             </div>
             <div className="new-pregunta__btn-container">
                 <button className="new-pregunta__add-alter-btn" onClick={(e)=>{

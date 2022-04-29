@@ -140,8 +140,8 @@ const NewForm = () => {
             {loading===false
             ? <>
                 <div className="new-form__title-container">
-                    <input className="new-form__title-input" placeholder="Título Encuesta..." onChange={(e)=>setTitle(e.target.value)}></input>
-                    <input className="new-form__description-input" placeholder="Descripción..." onChange={(e)=>setDescription(e.target.value)}></input>
+                    <input maxLength={100} className="new-form__title-input" placeholder="Título Encuesta..." onChange={(e)=>setTitle(e.target.value)}></input>
+                    <input maxLength={150} className="new-form__description-input" placeholder="Descripción..." onChange={(e)=>setDescription(e.target.value)}></input>
                 </div>
                 <div className="new-form__preguntas-container">
                     {
