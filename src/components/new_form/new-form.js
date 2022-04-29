@@ -112,7 +112,7 @@ const NewForm = () => {
         console.log(form);
         const formJson = JSON.stringify(form);
         setLoading(true);
-        const res = await fetch('http://localhost:5000/newForm',{
+        const res = await fetch('https://server-encuestas.herokuapp.com/newForm',{
            'method' : 'POST',
             headers : {
                 'Content-Type':'application/json'

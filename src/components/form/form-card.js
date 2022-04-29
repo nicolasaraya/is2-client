@@ -63,7 +63,7 @@ const FormCard = (props) => {
             setLoading(true);
             console.log(respuestas);
             const data = JSON.stringify(respuestas);
-            const res = await fetch('http://localhost:5000/newRespuesta',{
+            const res = await fetch('https://server-encuestas.herokuapp.com/newRespuesta',{
                 'method' : 'POST',
                  headers : {
                      'Content-Type':'application/json'

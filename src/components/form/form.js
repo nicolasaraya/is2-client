@@ -24,7 +24,7 @@ const Form = (props) => {
         ]
     });
     useEffect(() => {
-        fetch('http://localhost:5000/getForm/' + id, {
+        fetch('https://server-encuestas.herokuapp.com/getForm/' + id, {
             'method' : 'GET' 
         }).then (response => response.json().then(data => {
             setDatos(data);
