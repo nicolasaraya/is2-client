@@ -37,6 +37,7 @@ textarea:focus, input:focus{
 .logo-container{
   object-fit: scale-down;
   padding: 20px;
+  max-width: 50vh;
 }
 
 .logo-img{
@@ -486,6 +487,7 @@ input{
 
 .submited-form__share-link{
   color: #333;
+  background-color: white;
   font-size: 20px;
   padding: 15px;
   border-radius: 15px;
