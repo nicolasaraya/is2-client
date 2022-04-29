@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { faFloppyDisk, faL } from '@fortawesome/free-solid-svg-icons';
 import NewPregunta from "./new-pregunta";
 import Loading from "../loading";
 import { useNavigate } from "react-router-dom";
@@ -9,8 +9,8 @@ const NewForm = () => {
 
     const[preguntasCounter, setPreguntasCounter] = useState(0);
     const [preguntas, setPreguntas] = useState([]);
-    const [title, setTitle] = useState("Encuesta por defecto");
-    const [description, setDescription] = useState("Descripción por defecto");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [loading, setLoading]  = useState(false);
     
     const navigate = useNavigate();
@@ -24,7 +24,7 @@ const NewForm = () => {
             [
                 ...preguntas,
                 {
-                    title: "Pregunta por defecto",
+                    title: "",
                     id: id,
                     alter: []
                 }
@@ -101,6 +101,53 @@ const NewForm = () => {
 
     }
 
+
+    const checkErrors = () => {
+        if(preguntas.length===0){
+            alert("No ha añadido ninguna pregunta");
+            return null;
+        }
+        var errorAlert;
+        var completeForm = true;
+        if(title==="" || description===""){
+            setLoading(false);
+            errorAlert = "No ha completado todos los campos";
+            alert(errorAlert);
+            return null;
+        }
+        for (var i=0; i<preguntas.length; i++){
+            if(preguntas[i].title===""){
+                completeForm=false;
+                errorAlert = "No ha completado todos los campos";
+                break;
+            }
+            if(preguntas[i].alter.length===0){
+                completeForm=false;
+                errorAlert = "Hay una pregunta sin alternativas";
+                break;
+            }
+            var emptyAlter = false;
+
+            preguntas[i].alter.map(alter=>{
+                if(alter.title===""){
+                    emptyAlter=true;
+                }
+            })
+
+
+            if(emptyAlter===true){
+                completeForm = false;
+                errorAlert = "No ha completado todos los campos";
+                break;
+            }
+        }
+        if(completeForm === false){
+            setLoading(false);
+            alert(errorAlert);
+            return null;
+        }
+    }
+
     const handleSubmit = async () => {
         
         const form = {
@@ -111,7 +158,11 @@ const NewForm = () => {
         var formId;
         console.log(form);
         const formJson = JSON.stringify(form);
+
+        if(checkErrors()===null) return null;
+        
         setLoading(true);
+        
         const res = await fetch('https://server-encuestas.herokuapp.com/newForm',{
            'method' : 'POST',
             headers : {

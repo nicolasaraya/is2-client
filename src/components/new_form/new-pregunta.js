@@ -52,7 +52,7 @@ const   NewPregunta = (props) => {
             const aux2 = [
                 ...alter,
                 {
-                    title: "Alternativa por defecto",
+                    title: "",
                     id: identifier
                 }
             ]
