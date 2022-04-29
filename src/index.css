@@ -31,16 +31,39 @@ textarea:focus, input:focus{
   height: 10vh;
   width: 100%;
   box-shadow: 0 2px 15px rgba(0, 0, 0, .2);
+  display: flex;
+}
+
+.logo-container{
+  object-fit: contain;
+  padding: 20px;
+}
+
+.logo-img{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.background-pattern{
+  height: 90vh;
+  width: 100%;
+  position: fixed;
+  background-color: #e5e5f7;
+  opacity: 0.18;
+  background: linear-gradient(135deg, #ffc30055 25%, transparent 25%) -28px 0/ 56px 56px, linear-gradient(225deg, #ffc300 25%, transparent 25%) -28px 0/ 56px 56px, linear-gradient(315deg, #ffc30055 25%, transparent 25%) 0px 0/ 56px 56px, linear-gradient(45deg, #ffc300 25%, #e5e5f7 25%) 0px 0/ 56px 56px;
+  z-index: 1;
 }
 
 .new-form__container{
+  z-index: 10;
   display: flex;
   flex-direction: column;
   width: 100%;
-}
+  }
 
 .new-form__title-container{
-  background-color: rgb(98, 93, 139);
+  background-color: rgb(43, 54, 121);
   border-radius: 15px;
   padding: 20px;
   width: 60%;
@@ -84,7 +107,7 @@ input{
 
 .new-form__add-pregunta-btn{
   border: none;
-  background-color: rgb(54, 128, 197);
+  background-color: rgb(33, 123, 207);
   margin: 10px auto;
   border-radius: 5px;
   padding: 10px;
@@ -96,8 +119,8 @@ input{
 }
 
 .new-pregunta__container{
-  background-color: rgba(153, 148, 189, 0.3);
-  border: 2px solid rgb(98, 93, 139);
+  background-color: rgb(194, 199, 229);
+  border: 2px solid rgb(43, 54, 121);
   width: 55%;
   min-width: 350px;
   margin: 0 auto 10px auto;
@@ -114,7 +137,7 @@ input{
   /* Firefox */
   .new-pregunta__container {
     scrollbar-width: auto;
-    scrollbar-color: white rgb(98, 93, 139);;
+    scrollbar-color: white rgb(43, 54, 121);
   }
 
   /* Chrome, Edge, and Safari */
@@ -123,13 +146,13 @@ input{
   }
 
   .new-pregunta__container::-webkit-scrollbar-track {
-    background: rgb(98, 93, 139);
+    background: rgb(43, 54, 121);
   }
 
   .new-pregunta__container::-webkit-scrollbar-thumb {
     background-color: white;
     border-radius: 10px;
-    border: 5px solid rgb(98, 93, 139);
+    border: 5px solid rgb(43, 54, 121);
   }
 
 .full-alter-msj{
@@ -175,7 +198,7 @@ input{
 
 .pregunta-activa{
   transition: all .2s ease;
-  background-color: rgb(98, 93, 139);
+  background-color: rgb(43, 54, 121);
   color: white;
   max-height: 250px;
 }
@@ -253,7 +276,7 @@ input{
 .send-btn{
   width: fit-content;
   padding: 10px 15px;
-  background-color: green;
+  background-color: rgb(224, 194, 18);
   border: none;
   border-radius: 50%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, .3);
@@ -280,13 +303,15 @@ input{
   flex-direction: column;
   text-align: center;
   align-items: center;
+  z-index: 10;
 }
 
 .form-pregunta-index{
   color: #666;
+  font-weight: 600;
 }
 .form-title{
-  color: rgb(98, 93, 139);
+  color: rgb(43, 54, 121);
   font-size: 25px;
   font-weight: 600;
   max-width: 500px;
@@ -301,7 +326,7 @@ input{
 
 
 .form-card__container{
-  background-color: rgb(98, 93, 139);
+  background-color: rgb(43, 54, 121);
   border-radius: 15px;
   padding: 15px;
   margin-top: 10px;
@@ -402,6 +427,7 @@ input{
   display: flex;
   flex-direction: column;
   color: #333;
+  z-index: 10;
 }
 
 .submited-form-alert{
@@ -434,9 +460,9 @@ input{
 
 .submited-form__copy-btn{
   padding: 15px;
-  border: 2px solid rgb(108, 51, 182);
+  border: 2px solid rgb(43, 54, 121);
   color: white;
-  background-color: rgb(151, 124, 185);
+  background-color: rgb(130, 140, 201);
   border-radius: 15px;
   font-size: 20px;
   margin-right: 10px;
@@ -445,7 +471,7 @@ input{
 }
 
 .submited-form__copy-btn:hover{
-  background-color: rgb(95, 62, 134);
+  background-color: rgb(43, 54, 121);
 }
 
 .submited-form__copy-btn:active{
@@ -463,7 +489,7 @@ input{
   font-size: 20px;
   padding: 15px;
   border-radius: 15px;
-  border: 2px solid rgb(108, 51, 182);
+  border: 2px solid rgb(43, 54, 121);
   flex-grow: 1;
 }
 
@@ -481,6 +507,7 @@ input{
       width: 80px;
       height: 80px;
       margin: auto;
+      z-index: 10;
     }
     .lds-ellipsis div {
       position: absolute;
@@ -488,7 +515,7 @@ input{
       width: 13px;
       height: 13px;
       border-radius: 50%;
-      background: rgb(98, 93, 139);
+      background: rgb(43, 54, 121);
       animation-timing-function: cubic-bezier(0, 1, 1, 0);
     }
     .lds-ellipsis div:nth-child(1) {
