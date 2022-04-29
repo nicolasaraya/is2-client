@@ -57,7 +57,7 @@ textarea:focus, input:focus{
   width: 100%;
   position: fixed;
   background-color: #e5e5f7;
-  opacity: 0.18;
+  opacity: 0.1;
   background: linear-gradient(135deg, #ffc30055 25%, transparent 25%) -28px 0/ 56px 56px, linear-gradient(225deg, #ffc300 25%, transparent 25%) -28px 0/ 56px 56px, linear-gradient(315deg, #ffc30055 25%, transparent 25%) 0px 0/ 56px 56px, linear-gradient(45deg, #ffc300 25%, #e5e5f7 25%) 0px 0/ 56px 56px;
   z-index: 1;
 }
