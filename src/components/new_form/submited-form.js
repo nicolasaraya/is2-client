@@ -15,7 +15,7 @@ const SubmitedForm = () => {
     return (
         <div className="submited-form-page">
             <p className="submited-form-alert">Your form has been submited</p>
-            <p className="submited-form-sub-alert">Thanks for using (inserte nombre de la app), your form has been sent to all our contacts.</p>
+            <p className="submited-form-sub-alert">Thanks for using UdeC Forms, your form has been sent to all our contacts.</p>
             {/*AQUI HAY QUE PONER UNA ILUSTRACIÓN*/}
             <div className="submited-form__share-container">
                 <p className="submited-form-share-alert">share your form!</p>

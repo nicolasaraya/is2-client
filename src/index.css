@@ -35,7 +35,7 @@ textarea:focus, input:focus{
 }
 
 .logo-container{
-  object-fit: contain;
+  object-fit: scale-down;
   padding: 20px;
 }
 
@@ -63,7 +63,7 @@ textarea:focus, input:focus{
   }
 
 .new-form__title-container{
-  background-color: rgb(43, 54, 121);
+  background-color: rgb(43, 55, 121);
   border-radius: 15px;
   padding: 20px;
   width: 60%;
@@ -120,7 +120,7 @@ input{
 
 .new-pregunta__container{
   background-color: rgb(194, 199, 229);
-  border: 2px solid rgb(43, 54, 121);
+  border: 2px solid rgb(43, 55, 121);
   width: 55%;
   min-width: 350px;
   margin: 0 auto 10px auto;
@@ -137,7 +137,7 @@ input{
   /* Firefox */
   .new-pregunta__container {
     scrollbar-width: auto;
-    scrollbar-color: white rgb(43, 54, 121);
+    scrollbar-color: white rgb(43, 55, 121);
   }
 
   /* Chrome, Edge, and Safari */
@@ -146,13 +146,13 @@ input{
   }
 
   .new-pregunta__container::-webkit-scrollbar-track {
-    background: rgb(43, 54, 121);
+    background: rgb(43, 55, 121);
   }
 
   .new-pregunta__container::-webkit-scrollbar-thumb {
     background-color: white;
     border-radius: 10px;
-    border: 5px solid rgb(43, 54, 121);
+    border: 5px solid rgb(43, 55, 121);
   }
 
 .full-alter-msj{
@@ -198,7 +198,7 @@ input{
 
 .pregunta-activa{
   transition: all .2s ease;
-  background-color: rgb(43, 54, 121);
+  background-color: rgb(43, 55, 121);
   color: white;
   max-height: 250px;
 }
@@ -311,7 +311,7 @@ input{
   font-weight: 600;
 }
 .form-title{
-  color: rgb(43, 54, 121);
+  color: rgb(43, 55, 121);
   font-size: 25px;
   font-weight: 600;
   max-width: 500px;
@@ -326,7 +326,7 @@ input{
 
 
 .form-card__container{
-  background-color: rgb(43, 54, 121);
+  background-color: rgb(43, 55, 121);
   border-radius: 15px;
   padding: 15px;
   margin-top: 10px;
@@ -460,9 +460,9 @@ input{
 
 .submited-form__copy-btn{
   padding: 15px;
-  border: 2px solid rgb(43, 54, 121);
+  border: 2px solid rgb(43, 55, 121);
   color: white;
-  background-color: rgb(130, 140, 201);
+  background-color: rgb(74, 89, 189);
   border-radius: 15px;
   font-size: 20px;
   margin-right: 10px;
@@ -471,7 +471,7 @@ input{
 }
 
 .submited-form__copy-btn:hover{
-  background-color: rgb(43, 54, 121);
+  background-color: rgb(43, 55, 121);
 }
 
 .submited-form__copy-btn:active{
@@ -489,7 +489,7 @@ input{
   font-size: 20px;
   padding: 15px;
   border-radius: 15px;
-  border: 2px solid rgb(43, 54, 121);
+  border: 2px solid rgb(43, 55, 121);
   flex-grow: 1;
 }
 
@@ -515,7 +515,7 @@ input{
       width: 13px;
       height: 13px;
       border-radius: 50%;
-      background: rgb(43, 54, 121);
+      background: rgb(43, 55, 121);
       animation-timing-function: cubic-bezier(0, 1, 1, 0);
     }
     .lds-ellipsis div:nth-child(1) {
