@@ -10,8 +10,8 @@ function App() {
   return (
     <div className="App">
       <div className='page-navbar'><div className='logo-container'><img src={logo} className='logo-img'/></div></div>
-      <div className='page-content'>
       <div className='background-pattern'></div>
+      <div className='page-content'>
       <HashRouter>
         <Routes>
           <Route path='/' element={<NewForm/>}/>
