@@ -1,6 +1,4 @@
-import { toBeEmpty } from "@testing-library/jest-dom/dist/matchers";
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
@@ -11,7 +9,7 @@ const FormCard = (props) => {
     useEffect(()=>{
         const alternativas = document.getElementsByClassName("alter-pregunta-"+pregunta.id);
         changeAlter(index,alternativas)
-    },this)
+    },[index])
 
     const navigate = useNavigate();
     const toggleCheck = (e,id) =>{
