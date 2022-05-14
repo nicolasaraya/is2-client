@@ -23,17 +23,16 @@ const Form = (props) => {
             }
         ]
     });
+    const [index, setIndex] = useState(1);
     useEffect(() => {
         fetch('https://server-encuestas.herokuapp.com/getForm/' + id, {
             'method' : 'GET' 
         }).then (response => response.json().then(data => {
             setDatos(data);
-            setLoading(false);
-        }));
+            setRespuestas(new Array(data.preguntas.length))
+        })).then(()=>setLoading(false));
     }, []);
 
-
-    const [index, setIndex] = useState(1);
     const [respuestas, setRespuestas] = useState(new Array(datos.preguntas.length));
 
     return (
