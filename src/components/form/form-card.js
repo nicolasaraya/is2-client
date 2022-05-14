@@ -19,6 +19,7 @@ const FormCard = (props) => {
         auxAlter = respuestas
         if(!estaAlternativa.checked) auxAlter[index-1] = null
         else auxAlter[index-1] = id
+        console.log(auxAlter)
         setRespuestas(auxAlter)
     }
     
