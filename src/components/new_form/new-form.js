@@ -4,6 +4,7 @@ import { faFloppyDisk, faL } from '@fortawesome/free-solid-svg-icons';
 import NewPregunta from "./new-pregunta";
 import Loading from "../loading";
 import { useNavigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 
 const NewForm = () => {
 
@@ -45,17 +46,19 @@ const NewForm = () => {
     }
 
     const rmvPregunta = (id) =>{
-        var aux=preguntas;
-        var ind;
-        aux.map((val,index)=>{
-            if(val.id===id) ind=index;
-        })
-        aux.splice(ind,1);
-        setPreguntas(
-            [
-                ...aux
-            ]
-        )
+        if(window.confirm("¿Está seguro de eliminar esta pregunta?")){
+            var aux=preguntas;
+            var ind;
+            aux.map((val,index)=>{
+                if(val.id===id) ind=index;
+            })
+            aux.splice(ind,1);
+            setPreguntas(
+                [
+                    ...aux
+                ]
+            )
+        }
     }
 
     const preguntaTitleChange = (id, title) => {
@@ -98,7 +101,7 @@ const NewForm = () => {
                 ...aux
             ]
         )
-
+        
     }
 
 

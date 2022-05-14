@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import NewAlter from "./new-alter";
 import NewPreguntaHeader from "./new-pregunta-header";
+import { faPlus,faTrashCan } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const   NewPregunta = (props) => {
 
@@ -35,7 +37,12 @@ const   NewPregunta = (props) => {
     const handleDelete= () => {
         rmvPregunta(id);
     }
-
+    
+    const stopPropagation = (e) => {
+        const preguntaActiva = document.getElementsByClassName('pregunta-activa');
+        const estaPregunta = document.getElementById(id);
+        if (preguntaActiva[0]===estaPregunta) e.stopPropagation();
+    }
     const delay = ms => new Promise(res => setTimeout(res, ms));
 
     const hideFullAlterMsj = async()=>{
@@ -83,7 +90,7 @@ const   NewPregunta = (props) => {
     return(
         <div className="new-pregunta__container " id={id} onClick={toggleActive}>
             <p className="full-alter-msj" id={id+"-full-alter-msj"}>Puede haber un máximo de 5 alternativas...</p>
-            <NewPreguntaHeader handleDelete={handleDelete} addAlter={addAlter} index={index} id={id} handleTitleChange={handleTitleChange}/>
+            <NewPreguntaHeader handleDelete={handleDelete}  stopPropagation={stopPropagation} index={index} id={id} handleTitleChange={handleTitleChange}/>
             <div className="new-pregunta__options">
             {
                 alter.map((val,index)=>{
@@ -92,6 +99,12 @@ const   NewPregunta = (props) => {
                     );
                 })
             }
+            </div>
+            <div className="new-pregunta__options">
+                <button className="new-pregunta__add-alter-btn" onClick={(e)=>{
+                        stopPropagation(e);
+                        addAlter();
+                }} ><FontAwesomeIcon icon={faPlus} /></button>
             </div>
         </div>
     )

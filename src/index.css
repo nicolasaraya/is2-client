@@ -206,15 +206,15 @@ input{
   transition: all .2s ease;
   background-color: rgb(43, 55, 121);
   color: white;
-  max-height: 250px;
+  max-height: 320px;
 }
 
 .pregunta-activa>.new-pregunta__header>.new-pregunta__options>{
   color: white;
 }
 
-.pregunta-activa>.new-pregunta__header>.new-pregunta__btn-container>.new-pregunta__add-alter-btn{
-  color: white;
+.pregunta-activa>.new-pregunta__options>.new-pregunta__add-alter-btn{
+  color: rgb(43, 55, 121);
 }
 
 .pregunta-activa>.new-pregunta__header>.new-pregunta__btn-container>.new-pregunta__delete-btn{
@@ -237,11 +237,16 @@ input{
 }
 
 .new-pregunta__add-alter-btn{
-  padding: 5px;
-  margin: 0 10px;
+  padding: 0px;
+  margin: 5px 50%;
   border: none;
-  font-size: 16px;
-  background-color: transparent;
+  font-size: 22px;
+  font-weight: 700;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  background-color: white;
+  text-align: center;
   color: #333;
   cursor: pointer;
 }
