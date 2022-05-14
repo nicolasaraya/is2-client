@@ -11,7 +11,6 @@ const FormCard = (props) => {
     useEffect(()=>{
         const alternativas = document.getElementsByClassName("alter-pregunta-"+pregunta.id);
         changeAlter(index,alternativas)
-        console.log(respuestas)
     },this)
 
     const navigate = useNavigate();
@@ -58,7 +57,7 @@ const FormCard = (props) => {
 
     const handleSubmit = async() => {
         var banderita = 0;
-        for(var  i = 0 ; i < respuestas.length ; i++){
+        for(var  i = 0 ; i < length ; i++){
             if(respuestas[i] == null ) banderita = 1;
         }
         if(banderita){
@@ -76,7 +75,11 @@ const FormCard = (props) => {
                  body:data
              });
             
-            navigate(`/submited-answer`, {replace: true});
+            if(res.status!=500) navigate(`/submited-answer`, {replace: true});
+            else{
+                await setLoading(false)
+                alert('Error interno de servidor: intente más tarde')
+            }
         }
 
     }
