@@ -1,5 +1,6 @@
 import NewForm from './components/new_form/new-form';
 import Form from './components/form/form';
+import Dashboard from './components/dashboard/dashboard';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import SubmitedForm from './components/new_form/submited-form';
 import SubmitedAnswer from './components/form/submited-answer';
@@ -19,6 +20,7 @@ function App() {
         <Routes>
           <Route path='/' element={<NewForm/>}/>
           <Route path= '/form/:id' element={<Form/>}/>
+          <Route path= '/dashboard/:empresa' element={<Dashboard/>}/>
           <Route path='/submited-form/:formId' element={<SubmitedForm/>}/>
           <Route path='/submited-answer' element={<SubmitedAnswer/>}/>
         </Routes>
