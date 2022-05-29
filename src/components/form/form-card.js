@@ -99,20 +99,20 @@ const FormCard = (props) => {
             {
                 length===1
                 ? <div className="form-card__btn-container">
-                    <button className="form-card__send-btn-only" onClick={handleSubmit}>Send{" >>"}</button>
+                    <button className="form-card__send-btn-only" onClick={handleSubmit}>Enviar</button>
                 </div>
                 : index===1
                 ? <div className="form-card__btn-container">
-                    <button className="form-card__next-btn-only" onClick={handleNext}>Next{" >>"}</button>
+                    <button className="form-card__next-btn-only" onClick={handleNext}>{(index+1)+"  >>"}</button>
                 </div>
                 : index===length
                     ? <div className="form-card__btn-container">
-                        <button className="form-card__back-btn" onClick={handleBack}>{"<< "}Back</button>
-                        <button className="form-card__send-btn" onClick={handleSubmit}>Send</button>
+                        <button className="form-card__back-btn" onClick={handleBack}>{"<<  "+(index-1)}</button>
+                        <button className="form-card__send-btn" onClick={handleSubmit}>Enviar</button>
                     </div>
                     : <div className="form-card__btn-container">
-                        <button className="form-card__back-btn" onClick={handleBack}>{"<< "}Back</button>
-                        <button className="form-card__next-btn" onClick={handleNext}>Next{" >>"}</button>
+                        <button className="form-card__back-btn" onClick={handleBack}>{"<<  "+(index-1)}</button>
+                        <button className="form-card__next-btn" onClick={handleNext}>{(index+1)+"  >>"}</button>
                     </div>
                 
             }
