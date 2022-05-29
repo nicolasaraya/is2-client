@@ -32,25 +32,198 @@ textarea:focus, input:focus{
   width: 100%;
   box-shadow: 0 2px 15px rgba(0, 0, 0, .2);
   display: flex;
+  justify-content: space-between;
   z-index: 20;
   background-color: white;
   position: absolute;
 }
 
 .logo-container{
-  padding: 15px;
+  width: 250px;
+  padding: 20px;
 }
 
 .logo-img{
   height: 100%;
   object-fit: contain;
+  cursor: pointer;
 }
 
+.login-btn{
+  margin: auto 20px;
+  padding: 5px;
+  font-size: 30px;
+  color: rgb(46, 66, 173);
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+
+.login-btn:hover{
+  transform: scale(1.1);
+  color: rgb(43, 55, 121);
+}
+
+.login-page{
+  width: 100%;
+  height: 100%;
+  margin-top: 10vh;
+  display: flex;
+}
+
+.login-card{
+  width: 90%;
+  max-width: 350px;
+  background-color: rgb(43, 55, 121);
+  z-index: 10;
+  margin: auto;
+  border-radius: 5px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, .3);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+  gap: 20px;
+}
+
+.login-title{
+  text-align: center;
+  font-size: 24px;
+  color: white;
+  font-weight: 800;
+}
+.login-form{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-grow: 2;
+  gap: 20px;
+  font-size: 18px;
+}
+.login-form-item{
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+.login-form label{
+  color: white;
+}
+.login-form input{
+  border:2px solid rgb(57, 70, 141);
+  font-size: 16px;
+  transition: all .2s ease;
+}
+
+.login-form input:focus{
+  background-color: rgb(57, 70, 141);
+}
+.login-options{
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  justify-content: space-between;
+  color: white;
+}
+.login-options p{
+  font-weight: 800;
+  cursor: pointer;
+  transition: all .1s ease;
+}
+.login-options p:hover{
+  transform: scale(1.05);
+}
+
+.login-recuerdame{
+  display: flex;
+  position: relative;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  gap: 5px;
+  align-items: center;
+}
+
+.login-recuerdame input{
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+.login-recuerdame-checkmark{
+  top: 0;
+  left: 0;
+  height: 16px;
+  width: 16px;
+  border-radius: 2px;
+  background-color: white;
+}
+.login-recuerdame:hover input ~ .login-recuerdame-checkmark {
+  transform: scale(1.1);
+}
+.login-recuerdame input:checked ~ .login-recuerdame-checkmark {
+  background-color: rgb(0, 132, 255);
+}
+.login-recuerdame-checkmark:after {
+  content: "";
+  display: none;
+}
+.login-recuerdame input:checked ~ .login-recuerdame-checkmark:after {
+  display: flex;
+}
+.login-recuerdame .login-recuerdame-checkmark:after{
+  width: 4px;
+  height: 8px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+  margin-left: 5px;
+  margin-top: 1px;
+}
+.login-form button{
+  width: 100%;
+  height: 40px;
+  border: none;
+  background-color: white;
+  color: #333;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.login-form button:hover{
+  background-color: rgba(256,256,256,.8);
+}
+.login-form button:active{
+  transform: scale(.98);
+}
+
+.login-create-account{
+  display: flex;
+  justify-content: center;
+  color: white;
+  font-size: 14px;
+  flex-grow: 1;
+  gap: 10px;
+}
+.login-create-account p{
+  font-weight: 600;
+  cursor: pointer;
+  transition: all .1s ease;
+}
+.login-create-account p:hover{
+  transform: scale(1.05);
+}
 .background-pattern{
   height: 100vh;
   width: 100%;
   position: fixed;
-  background-color: #e5e5f7;
+  background-color: #e5e9f7;
   opacity: 0.1;
   background: linear-gradient(135deg, #ffc30055 25%, transparent 25%) -28px 0/ 56px 56px, linear-gradient(225deg, #ffc300 25%, transparent 25%) -28px 0/ 56px 56px, linear-gradient(315deg, #ffc30055 25%, transparent 25%) 0px 0/ 56px 56px, linear-gradient(45deg, #ffc300 25%, #e5e5f7 25%) 0px 0/ 56px 56px;
   z-index: 1;
@@ -62,7 +235,7 @@ textarea:focus, input:focus{
   display: flex;
   flex-direction: column;
   width: 100%;
-  }
+}
 
 .new-form__title-container{
   background-color: rgb(43, 55, 121);
