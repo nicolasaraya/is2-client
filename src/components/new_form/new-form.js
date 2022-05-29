@@ -1,16 +1,17 @@
 import { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faFloppyDisk } from '@fortawesome/free-solid-svg-icons';
+import { faFloppyDisk, faL } from '@fortawesome/free-solid-svg-icons';
 import NewPregunta from "./new-pregunta";
 import Loading from "../loading";
 import { useNavigate } from "react-router-dom";
+import { confirmAlert } from "react-confirm-alert";
 
 const NewForm = () => {
 
     const[preguntasCounter, setPreguntasCounter] = useState(0);
     const [preguntas, setPreguntas] = useState([]);
-    const [title, setTitle] = useState("Encuesta por defecto");
-    const [description, setDescription] = useState("Descripción por defecto");
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
     const [loading, setLoading]  = useState(false);
     
     const navigate = useNavigate();
@@ -24,7 +25,7 @@ const NewForm = () => {
             [
                 ...preguntas,
                 {
-                    title: "Pregunta por defecto",
+                    title: "",
                     id: id,
                     alter: []
                 }
@@ -45,17 +46,19 @@ const NewForm = () => {
     }
 
     const rmvPregunta = (id) =>{
-        var aux=preguntas;
-        var ind;
-        aux.map((val,index)=>{
-            if(val.id===id) ind=index;
-        })
-        aux.splice(ind,1);
-        setPreguntas(
-            [
-                ...aux
-            ]
-        )
+        if(window.confirm("¿Está seguro de eliminar esta pregunta?")){
+            var aux=preguntas;
+            var ind;
+            aux.map((val,index)=>{
+                if(val.id===id) ind=index;
+            })
+            aux.splice(ind,1);
+            setPreguntas(
+                [
+                    ...aux
+                ]
+            )
+        }
     }
 
     const preguntaTitleChange = (id, title) => {
@@ -98,7 +101,54 @@ const NewForm = () => {
                 ...aux
             ]
         )
+        
+    }
 
+
+    const checkErrors = () => {
+        if(preguntas.length===0){
+            alert("No ha añadido ninguna pregunta");
+            return null;
+        }
+        var errorAlert;
+        var completeForm = true;
+        if(title==="" || description===""){
+            setLoading(false);
+            errorAlert = "No ha completado todos los campos";
+            alert(errorAlert);
+            return null;
+        }
+        for (var i=0; i<preguntas.length; i++){
+            if(preguntas[i].title===""){
+                completeForm=false;
+                errorAlert = "No ha completado todos los campos";
+                break;
+            }
+            if(preguntas[i].alter.length===0){
+                completeForm=false;
+                errorAlert = "Hay una pregunta sin alternativas";
+                break;
+            }
+            var emptyAlter = false;
+
+            preguntas[i].alter.map(alter=>{
+                if(alter.title===""){
+                    emptyAlter=true;
+                }
+            })
+
+
+            if(emptyAlter===true){
+                completeForm = false;
+                errorAlert = "No ha completado todos los campos";
+                break;
+            }
+        }
+        if(completeForm === false){
+            setLoading(false);
+            alert(errorAlert);
+            return null;
+        }
     }
 
     const handleSubmit = async () => {
@@ -111,8 +161,12 @@ const NewForm = () => {
         var formId;
         console.log(form);
         const formJson = JSON.stringify(form);
+
+        if(checkErrors()===null) return null;
+        
         setLoading(true);
-        const res = await fetch('http://localhost:5000/newForm',{
+        
+        const res = await fetch('https://server-encuestas.herokuapp.com/newForm',{
            'method' : 'POST',
             headers : {
                 'Content-Type':'application/json'
@@ -140,8 +194,8 @@ const NewForm = () => {
             {loading===false
             ? <>
                 <div className="new-form__title-container">
-                    <input className="new-form__title-input" placeholder="Título Encuesta..." onChange={(e)=>setTitle(e.target.value)}></input>
-                    <input className="new-form__description-input" placeholder="Descripción..." onChange={(e)=>setDescription(e.target.value)}></input>
+                    <input maxLength={100} className="new-form__title-input" placeholder="Título Encuesta..." onChange={(e)=>setTitle(e.target.value)}></input>
+                    <input maxLength={150} className="new-form__description-input" placeholder="Descripción..." onChange={(e)=>setDescription(e.target.value)}></input>
                 </div>
                 <div className="new-form__preguntas-container">
                     {

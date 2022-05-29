@@ -1,10 +1,15 @@
-import { setSelectionRange } from "@testing-library/user-event/dist/utils";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 
 const FormCard = (props) => {
 
     const {pregunta, index, setIndex, length, setRespuestas, respuestas ,setLoading} = {...props};
+
+    useEffect(()=>{
+        const alternativas = document.getElementsByClassName("alter-pregunta-"+pregunta.id);
+        changeAlter(index,alternativas)
+    },[index])
 
     const navigate = useNavigate();
     const toggleCheck = (e,id) =>{
@@ -19,41 +24,39 @@ const FormCard = (props) => {
         auxAlter = respuestas
         if(!estaAlternativa.checked) auxAlter[index-1] = null
         else auxAlter[index-1] = id
+        console.log(auxAlter)
         setRespuestas(auxAlter)
     }
     
-    const changeAlter = (index) =>{
-        const alternativas = document.getElementsByClassName("alter-pregunta-"+pregunta.id);
-        if(respuestas[index-1]=== null){
-            for(var i=0;i<alternativas.length;i++){
-                alternativas[i].checked=false;
-            } 
-        }
-        else{
-            const estaAlternativa = document.getElementById("alter-checkbox-"+respuestas[index-1])
+    const changeAlter = (index,alternativas) =>{
+
+        if(respuestas[index-1]>=0){
             for(i=0;i<alternativas.length;i++){
-                if(alternativas[i]===estaAlternativa){
+                if(alternativas[i].id=="alter-checkbox-"+respuestas[index-1]){
                     alternativas[i].checked=true;
                 }
                 else alternativas[i].checked=false;
             } 
+        }else{
+            for(var i=0;i<alternativas.length;i++){
+                alternativas[i].checked=false;
+            } 
         }
     }
+
     const handleBack = () => {
         const aux = index - 1;
         setIndex(aux);
-        changeAlter(aux)
     }
 
     const handleNext = () => {
         const aux = index +1;
         setIndex(aux);
-        changeAlter(aux)
     }
 
     const handleSubmit = async() => {
         var banderita = 0;
-        for(var  i = 0 ; i < respuestas.length ; i++){
+        for(var  i = 0 ; i < length ; i++){
             if(respuestas[i] == null ) banderita = 1;
         }
         if(banderita){
@@ -61,9 +64,8 @@ const FormCard = (props) => {
         }
         else {
             setLoading(true);
-            console.log(respuestas);
             const data = JSON.stringify(respuestas);
-            const res = await fetch('http://localhost:5000/newRespuesta',{
+            const res = await fetch('https://server-encuestas.herokuapp.com/newRespuesta',{
                 'method' : 'POST',
                  headers : {
                      'Content-Type':'application/json'
@@ -71,7 +73,11 @@ const FormCard = (props) => {
                  body:data
              });
             
-            navigate(`/submited-answer`, {replace: true});
+            if(res.status!=500) navigate(`/submited-answer`, {replace: true});
+            else{
+                await setLoading(false)
+                alert('Error interno de servidor: intente más tarde')
+            }
         }
 
     }
@@ -83,7 +89,7 @@ const FormCard = (props) => {
                     pregunta.alter.map((val,index)=>{
                         return(
                             <div className="form-card__alter" key={val.id}>
-                                <input type='checkbox' className={"form-card__alter-checkbox alter-pregunta-"+pregunta.id} onChange={(e)=>toggleCheck(e,val.id)} id={'alter-checkbox-'+val.id}></input>
+                                <input type='checkbox' className={"form-card__alter-checkbox alter-pregunta-"+pregunta.id} onChange={(e)=>toggleCheck(e,val.id[0])} id={'alter-checkbox-'+val.id}></input>
                                 <p className="form-card__alter-title">{val.title}</p>    
                             </div>
                         )

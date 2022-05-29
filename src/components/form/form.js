@@ -7,34 +7,25 @@ const Form = (props) => {
     const {id} = useParams();
     const [loading, setLoading]  = useState(true);
 
-    const [datos, setDatos] = useState({
-        title : "",
-        description : "",
-        preguntas : [
-            {
-                title : "",
-                id : "",
-                alter : [
-                    {
-                        title : "",
-                        id : ""
-                    }
-                ]
-            }
-        ]
-    });
+    const [datos, setDatos] = useState({});
+    const [index, setIndex] = useState(1);
+    const [respuestas, setRespuestas] = useState([]);
+
+    
     useEffect(() => {
-        fetch('http://localhost:5000/getForm/' + id, {
-            'method' : 'GET' 
-        }).then (response => response.json().then(data => {
+        getData().then(data => {
             setDatos(data);
-            setLoading(false);
-        }));
+        }).then(()=>setLoading(false));
     }, []);
 
+    const getData = async () => {
+        const request = await fetch('https://server-encuestas.herokuapp.com/getForm/' + id, {
+            'method' : 'GET' 
+        });
+        return await request.json();
+    }
 
-    const [index, setIndex] = useState(1);
-    const [respuestas, setRespuestas] = useState(new Array(datos.preguntas.length));
+    
 
     return (
         <>

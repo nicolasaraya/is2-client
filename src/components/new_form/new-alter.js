@@ -18,7 +18,7 @@ const   NewAlter = (props) => {
     return(
         <div className="new-alter__container " id={id}>
                 <div className="new-alter__header">
-                    <input className="new-alter__title-input" placeholder={"Alternativa "+index} onClick={(e)=>stopPropagation(e)} onChange={(e)=>handleAlterChange(id,e.target.value)}></input>
+                    <input maxLength={100} className="new-alter__title-input" placeholder={"Alternativa "+index} onClick={(e)=>stopPropagation(e)} onChange={(e)=>handleAlterChange(id,e.target.value)}></input>
                     <button className="new-alter__delete-btn" onClick={(e)=>{
                         e.stopPropagation();
                         handleDelete();
