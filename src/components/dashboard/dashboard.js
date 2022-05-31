@@ -1,17 +1,28 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../loading";
-import DashboardCard from "./dashboard-form";
+import DashboardForm from "./dashboard-form";
 
 const Dashboard = (props) => {
     const {empresa} = useParams();
     const [loading, setLoading]  = useState(true);
-    const [datos, setDatos] = useState({});
-    
+    const [index, setIndex] = useState(1);
+    const [paginas, setPaginas] = useState([]);
+    const elemPag = 10;
     useEffect(() => {
         getData().then(data => {
-            setDatos(data);
-            console.log(data)
+            let paginas = []
+            let info = Object.entries(data)
+            console.log(info.length)
+            for(let i = 0; i < info.length/elemPag; i++){
+                let pagina = []
+                for(let j = 0; j < elemPag; j++){
+                    pagina.push(Object.entries(data)[j+ (i*elemPag)])
+                }
+                paginas.push(pagina)
+            }
+            setPaginas(paginas)
+            console.log(paginas)
             console.log(Object.entries(data).map(val => `${val[1].title}`))
         }).then(()=>setLoading(false));
     }, []);
@@ -28,20 +39,24 @@ const Dashboard = (props) => {
         <>
         {
             loading===false
-            ?<div className = "form__container">
-                <p className="form-title"> Encuestas </p>
-                 <div className="form__container">
+            ?<div className = "dashboard__container">
+                <p className="dashboard-title">Encuestas</p>
+                 <div className="dashboard-forms__container">
+                    
                     {
-                        Object.entries(datos).map(val =>{
+                        paginas[index-1].map((val,ind)=>{
                             return(
-                                <DashboardCard idEncuesta={val[1].id} titleEncuesta={val[1].title} descEncuesta={val[1].description} dateEncuesta={val[1].date} />
+                                <DashboardForm idEncuesta={val[1].id} index ={(ind+1)+((index-1)*elemPag)} titleEncuesta={val[1].title} descEncuesta={val[1].description} dateEncuesta={val[1].date} />
                             );
                         })
                     }
-                </div> 
+                </div>
+                <p>{index}/{paginas.length}</p> 
             </div>
+            
             :<Loading></Loading>
         }
+
         </>
     )
 }
