@@ -4,7 +4,7 @@ import { faFloppyDisk, faL } from '@fortawesome/free-solid-svg-icons';
 import NewPregunta from "./new-pregunta";
 import Loading from "../loading";
 import { useNavigate } from "react-router-dom";
-import { confirmAlert } from "react-confirm-alert";
+//import { confirmAlert } from "react-confirm-alert";
 
 const NewForm = () => {
 
