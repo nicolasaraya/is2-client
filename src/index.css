@@ -498,7 +498,7 @@ input{
 
 .page-content{
   display: flex;
-  height: 90vh;
+  min-height: 90vh;
 }
 
 /*    FORM CARD     */
@@ -769,48 +769,209 @@ input{
       }
     }
 
+
+.dashboard-profile{
+  align-items: center;
+  background-color: rgb(43, 55, 121);
+  margin: 0 auto;
+  min-height: 400px;
+  width: 250px;
+  margin-top: 5vh;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 15px;
+  box-shadow: 0 2px 10px  rgba(0, 0, 0, .3);
+}
+.dashboard-profile__title{
+  font-size: 22px;
+  font-weight: 700;
+  color: white;
+}
+.dashboard-profile__people{
+  font-size: 18px;
+  font-weight: 400;
+  color: white;
+  text-align: left;
+}
+.dashboard-profile__people-container{
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.dashboard-profile__img{
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  text-align: center;
+  background-color: white;
+}
 .dashboard__container{
   margin: auto;
   margin-top: 10vh;
-  height: 90vh;
-  flex-direction: column;
-  justify-content: center;
   text-align: center;
   align-items: center;
   z-index: 10;
+  display: flex;
+  flex-wrap: wrap;
+  width: 90%;
+  gap: 30px;
+  max-width: 800px;
 }
-.dashboard-title{
-  color: rgb(43, 55, 121);
-  margin: 10px;
+.dashboard-forms-title{
+  color: white;
   font-size: 25px;
-  font-weight: 600;
-  max-width: 500px;
-}
-.dashboard-forms__container{
+  font-weight: 700;
+  width: 100%;
+  text-align: left;
+ }
+ .dashboard-forms-created{
+  color: white;
+  font-size: 18px;
+  font-weight: 300;
+  width: 100%;
+  text-align: left;
+ }
+.dashboard-forms-header-container{
   background-color: rgb(43, 55, 121);
-  border-radius: 15px;
+  display: flex;
+
+  border-radius: 10px;
   padding: 15px;
-  margin: auto;
+  min-width: 350px;
+  margin-top: 10px;
+  width: 100%;
+  box-shadow: 0 2px 10px  rgba(0, 0, 0, .3);
+}
+.dashboard-forms-title-container{
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+}
+.dashboard-forms{
+  flex-direction: column;
+  align-items: center;
+  height: 90vh;
   justify-content: space-between;
-  height: auto;
-  width: auto;
-  color: white;
-  box-shadow: 0 2px 10px  rgba(0, 0, 0, .3);
+  display: flex;
+  flex-grow: 1;
+  min-width: 350px;
+}
+.dashboard-forms__container{
+  text-align: left;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  gap: 10px;
+}
+.dashboard-forms-index{
+  font-size: 20px;
+  font-weight: 700;
+  color: rgb(43, 55, 121);
+  margin-bottom: 20px;
 }
 .dashboard-forms__element-title{
   text-align: left;
   font-size: 15px;
   font-weight: 500;
+  overflow: hidden;
+  max-width: 280px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .dashboard-forms__element-desc{
   text-align: left;
   font-size: 12px;
   font-weight: 300;
+  overflow: hidden;
+  max-width: 250px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.dashboard-forms__element-date{
+  text-align: left;
+  font-size: 10px;
+  font-weight: 200;
 }
 .dashboard-forms__element-container{
-  text-align: left;
-  margin-top: 10px;
-  margin-bottom: 10px;
+  background-color: rgb(43, 55, 121);
+  border-radius: 10px;
+  padding: 15px;
+  display: flex;
+  justify-content: space-between;
+  height: auto;
+  width: 100%;
+  min-width: 350px;
+  color: white;
+  box-shadow: 0 2px 10px  rgba(0, 0, 0, .3);
+  gap: 10px;
+  cursor: pointer;
+  transition: all .2s ease;
+}
+.dashboard-forms__button-container{
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.dashboard-forms__element-container:hover{
+  transform: scale(1.05);
+  background-color: rgb(66, 75, 145);
+}
+.dashboard-forms__button-link{
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all .2s ease;
+}
+.dashboard-forms__button-link:hover{
+  color: rgb(207, 178, 13);  
+}
+.dashboard-forms__button-results:hover{
+  color: rgb(207, 178, 13);  
+}
+.dashboard-forms__button-results{
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: all .2s ease;
+}
+.dashboard-forms__button-create:hover{
+  color: rgb(207, 178, 13); 
+  transform: scale(1.2); 
+}
+.dashboard-forms__button-create{
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 40px;
+  font-weight: 700;
+  transition: all .2s ease;
+}
+.dashboard-forms__button-addPeople{
+  text-decoration: none;
+  background-color: transparent;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 20px;
+  font-weight: 400;
+  transition: all .2s ease;
+}
+.dashboard-forms__button-addPeople:hover{
+  color: rgb(207, 178, 13); 
+  transform: scale(1.2); 
 }

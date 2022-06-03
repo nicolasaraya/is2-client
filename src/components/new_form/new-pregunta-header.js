@@ -12,7 +12,6 @@ const NewPreguntaHeader = (props) => {
                 <input maxLength={100} className="new-pregunta__title-input" placeholder={"Pregunta "+index+"..."} onClick={(e)=> stopPropagation(e)} onChange={(e)=>handleTitleChange(e.target.value)}></input>
             </div>
             <div className="new-pregunta__btn-container">
-
                 <button className="new-pregunta__delete-btn" onClick={(e)=>{
                     e.stopPropagation();
                     handleDelete();
