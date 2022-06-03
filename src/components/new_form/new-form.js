@@ -4,10 +4,11 @@ import { faFloppyDisk, faL } from '@fortawesome/free-solid-svg-icons';
 import NewPregunta from "./new-pregunta";
 import Loading from "../loading";
 import { useNavigate } from "react-router-dom";
+import { useParams } from "react-router-dom";
 //import { confirmAlert } from "react-confirm-alert";
 
 const NewForm = () => {
-
+    const {empresa} = useParams();
     const[preguntasCounter, setPreguntasCounter] = useState(0);
     const [preguntas, setPreguntas] = useState([]);
     const [title, setTitle] = useState("");
@@ -166,7 +167,7 @@ const NewForm = () => {
         
         setLoading(true);
         
-        const res = await fetch('https://server-encuestas.herokuapp.com/newForm',{
+        const res = await fetch('http://127.0.0.1:5000/newForm/'+empresa,{
            'method' : 'POST',
             headers : {
                 'Content-Type':'application/json'

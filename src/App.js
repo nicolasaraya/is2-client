@@ -25,9 +25,9 @@ function App() {
         <div className='background-pattern'></div>
         <div className='page-content'>
         <Routes>
-          <Route path='/' element={<NewForm/>}/>
+          <Route path='/:empresa/createForm' element={<NewForm/>}/>
           <Route path= '/form/:id' element={<Form/>}/>
-          <Route path= '/dashboard/:empresa' element={<Dashboard/>}/>
+          <Route path= '/:empresa/dashboard' element={<Dashboard/>}/>
           <Route path='/submited-form/:formId' element={<SubmitedForm/>}/>
           <Route path='/submited-answer' element={<SubmitedAnswer/>}/>
           <Route path='/login' element={<Login/>}/>

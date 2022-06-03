@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../loading";
 import DashboardForm from "./dashboard-form";
-
+import { useNavigate } from "react-router-dom";
 
 const Dashboard = (props) => {
     const {empresa} = useParams();
@@ -13,6 +13,7 @@ const Dashboard = (props) => {
     const [encuestas, setEncuestas] = useState(0);
     const [paginas, setPaginas] = useState([]);
     const elemPag = 10;
+    const navigate = useNavigate();
     useEffect(() => {
         getData().then(data => {
             let paginas = []
@@ -29,12 +30,14 @@ const Dashboard = (props) => {
             setPaginas(paginas)
             console.log(paginas)
             console.log(Object.entries(data).map(val => `${val[1].title}`))
-        }).then(()=>setLoading(false));
+        }).then(()=>setLoading(false))
+        .catch(err => console.log(err))//navigate("/login", {replace: true}))
     }, []);
     
     const getData = async () => {
         const request = await fetch('http://127.0.0.1:5000/getForms/' + empresa, {
-            'method' : 'GET' 
+            'method' : 'GET'
+
         });
         return await request.json();
     }
@@ -65,7 +68,7 @@ const Dashboard = (props) => {
                             <p className = "dashboard-forms-created">Has creado {encuestas} encuestas</p>
                         </div>
                         <button className="dashboard-forms__button-create" onClick={e=>{
-                                e.stopPropagation();
+                                navigate(`/${empresa}/createForm`)
                                 }} >
                             <FontAwesomeIcon icon={faCirclePlus} />
                         </button>
