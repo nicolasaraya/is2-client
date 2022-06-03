@@ -14,7 +14,7 @@ function App() {
 
   const navigate = useNavigate();
   const logoClick = () => {
-    navigate('/',{replace:true})
+    navigate('/login',{replace:true})
   }
   return (
     <div className="App">
