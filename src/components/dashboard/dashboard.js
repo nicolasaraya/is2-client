@@ -1,4 +1,4 @@
-import { faAngleDown, faCirclePlus, faSquarePollVertical, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleLeft, faAngleRight, faCirclePlus, faPlus, faSquarePollVertical, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = (props) => {
     const {empresa} = useParams();
     const [loading, setLoading]  = useState(true);
-    const [index, setIndex] = useState(2);
+    const [index, setIndex] = useState(1);
     const [encuestas, setEncuestas] = useState(0);
     const [paginas, setPaginas] = useState([]);
     const elemPag = 5;
@@ -44,7 +44,15 @@ const Dashboard = (props) => {
         });
         return await request.json();
     }
+    const handleBack = () => {
+        const aux = index - 1;
+        setIndex(aux);
+    }
 
+    const handleNext = () => {
+        const aux = index +1;
+        setIndex(aux);
+    }
 
     return (
         <>
@@ -64,6 +72,11 @@ const Dashboard = (props) => {
                     </div>
                     <div className="dashboard-addPeople-container">
                         <input className="dashboard-addPeople-input" maxLength={50} placeholder="añadirCorreo@correo.com"></input>
+                        <button className="dashboard-forms__button-addPeople" onClick={e=>{
+                                e.stopPropagation();
+                                }} >
+                            <FontAwesomeIcon icon={faPlus} />
+                        </button>
                     </div>
                 </div>
                 
@@ -88,8 +101,38 @@ const Dashboard = (props) => {
                             })
                         }
                     </div>
-                    <p className="dashboard-forms-index">{index}/{paginas.length}</p> 
                     
+                    {
+                        paginas.length===1
+                        ? <div className="dashboard__btn-container">
+                            <p className="dashboard-forms-index">{index}/{paginas.length}</p> 
+                        </div>
+                        : index===1
+                        ? <div className="dashboard__btn-container">
+                            <button className="dashboard__back-btn"></button>
+                            <p className="dashboard-forms-index" >{index}/{paginas.length}</p> 
+                            <button className="dashboard__next-btn" onClick={handleNext}>
+                                    <FontAwesomeIcon icon={faAngleRight} />    
+                            </button>
+                        </div>
+                        : index===paginas.length
+                            ? <div className="dashboard__btn-container">
+                                <button className="dashboard__back-btn" onClick={handleBack}>
+                                    <FontAwesomeIcon icon={faAngleLeft} />    
+                                </button>
+                                <p className="dashboard-forms-index">{index}/{paginas.length}</p> 
+                                <button className="dashboard__next-btn"></button>
+                            </div>
+                            : <div className="dashboard__btn-container">
+                                <button className="dashboard__back-btn" onClick={handleBack}>
+                                    <FontAwesomeIcon icon={faAngleLeft} />    
+                                </button>
+                                <p className="dashboard-forms-index">{index}/{paginas.length}</p> 
+                                <button className="dashboard__next-btn" onClick={handleNext}>
+                                    <FontAwesomeIcon icon={faAngleRight} />    
+                                </button>
+                            </div>
+                    }
                 </div>
                         
             </div>

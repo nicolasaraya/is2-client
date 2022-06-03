@@ -785,7 +785,6 @@ input{
   gap: 10px;
   padding: 15px;
   box-shadow: 0 2px 10px  rgba(0, 0, 0, .3);
-  position: sticky;
 }
 .dashboard-profile__title{
   font-size: 22px;
@@ -833,7 +832,8 @@ input{
   margin-top: 10vh;
   z-index: 10;
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: wrap-reverse;
+  align-items: flex-end;
   width: 90%;
   gap: 30px;
   max-width: 800px;
@@ -885,12 +885,7 @@ input{
   flex-direction: column;
   gap: 10px;
 }
-.dashboard-forms-index{
-  font-size: 20px;
-  font-weight: 700;
-  color: rgb(43, 55, 121);
-  margin-bottom: 20px;
-}
+
 .dashboard-forms__element-title{
   text-align: left;
   font-size: 15px;
@@ -991,4 +986,41 @@ input{
 .dashboard-forms__button-addPeople:hover{
   color: rgb(207, 178, 13); 
   transform: scale(1.2); 
+}
+.dashboard__btn-container{
+  display: flex;
+  align-items: center;
+  width: 100%;
+  justify-content: space-between;
+  padding: 5px;
+}
+
+.dashboard__back-btn{
+  background-color: transparent;
+  border: none;
+  color: rgb(43, 55, 121);
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  flex-grow: 1;
+  width: 33%;
+}
+
+.dashboard__next-btn{
+  background-color: transparent;
+  border: none;
+  color: rgb(43, 55, 121);
+  font-size: 20px;
+  cursor: pointer;
+  text-align: center;
+  flex-grow: 1;
+  width: 33%;
+}
+.dashboard-forms-index{
+  font-size: 20px;
+  font-weight: 500;
+  text-align: center;
+  color: rgb(43, 55, 121);
+  flex-grow: 1;
+  width: 33%;
 }
