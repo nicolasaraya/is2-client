@@ -14,15 +14,16 @@ const Dashboard = (props) => {
     const [encuestas, setEncuestas] = useState(0);
     const [paginas, setPaginas] = useState([]);
     const [nUsers, setNUsers] = useState(0);
+    const [user, setUser] = useState("");
     const elemPag = 5;
     const navigate = useNavigate();
     useEffect(() => {
+        getInfo().then(data => {
+            console.log(data.img)
+            setImgProfile(data.img)
+            setNUsers(data.nUsers)
+        })
         getData().then(data => {
-            getInfo().then(data => {
-                console.log(data.img)
-                setImgProfile(data.img)
-                setNUsers(data.nUsers)
-            })
             let paginas = []
             let info = Object.entries(data)
             setEncuestas(info.length)
@@ -64,6 +65,28 @@ const Dashboard = (props) => {
         const aux = index +1;
         setIndex(aux);
     }
+    const addUser = () => {
+        const usuario = {
+            Correo: user
+        }
+        if (user !== "") {
+            const res = fetch('http://localhost:5000/newUser', {
+                'method' : 'POST',
+                headers : {
+                    'Content-Type':'application/json'
+                },
+                body:JSON.stringify(usuario)
+            }).then(response=>response.json())
+            console.log(res.then(data=>
+                alert(data.message)))
+            document.getElementById("user").value = ""
+            setUser("")
+        }
+        else {
+            alert("No ha ingresado un correo")
+        }
+    }
+
 
     return (
         <>
@@ -82,9 +105,11 @@ const Dashboard = (props) => {
                         </button>
                     </div>
                     <div className="dashboard-addPeople-container">
-                        <input className="dashboard-addPeople-input" maxLength={50} placeholder="añadirCorreo@correo.com"></input>
+                        <input className="dashboard-addPeople-input" id = "user" maxLength={50} placeholder="añadirCorreo@correo.com" onChange={(e)=>setUser(e.target.value)}></input>
                         <button className="dashboard-forms__button-addPeople" onClick={e=>{
+                                
                                 e.stopPropagation();
+                                addUser()
                                 }} >
                             <FontAwesomeIcon icon={faPlus} />
                         </button>
