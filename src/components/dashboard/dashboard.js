@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const Dashboard = (props) => {
     const {empresa} = useParams();
     const [loading, setLoading]  = useState(true);
-    const [index, setIndex] = useState(1);
+    const [index, setIndex] = useState(2);
     const [encuestas, setEncuestas] = useState(0);
     const [paginas, setPaginas] = useState([]);
     const elemPag = 5;
@@ -53,7 +53,7 @@ const Dashboard = (props) => {
             ?<div className = "dashboard__container">
                 <div className = "dashboard-profile">
                     <p className = "dashboard-profile__title">Bienvenid@ {empresa}</p>
-                    <div className = "dashboard-profile__img"></div>
+                    <div className = "dashboard-profile__img-container"> <img src="https://pbs.twimg.com/media/FB3CuoqWUA4TRPo.png" className="dashboard-profile__img"></img></div>
                     <div className="dashboard-profile__people-container">
                         <p className="dashboard-profile__people">X personas reciben tus encuestas </p>
                         <button className="dashboard-forms__button-addPeople" onClick={e=>{
