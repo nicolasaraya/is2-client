@@ -8,18 +8,24 @@ import { useNavigate } from "react-router-dom";
 
 const Dashboard = (props) => {
     const {empresa} = useParams();
+    const [imgProfile, setImgProfile] = useState("https://icon-library.com/images/default-profile-icon/default-profile-icon-24.jpg");
     const [loading, setLoading]  = useState(true);
     const [index, setIndex] = useState(1);
     const [encuestas, setEncuestas] = useState(0);
     const [paginas, setPaginas] = useState([]);
+    const [nUsers, setNUsers] = useState(0);
     const elemPag = 5;
     const navigate = useNavigate();
     useEffect(() => {
         getData().then(data => {
+            getInfo().then(data => {
+                console.log(data.img)
+                setImgProfile(data.img)
+                setNUsers(data.nUsers)
+            })
             let paginas = []
             let info = Object.entries(data)
             setEncuestas(info.length)
-            console.log(info.length)
             var numPages = Math.ceil(info.length / elemPag)
             for(let i = 0; i < numPages; i++){
                 let pagina = []
@@ -31,8 +37,6 @@ const Dashboard = (props) => {
                 paginas.push(pagina)
             }
             setPaginas(paginas)
-            console.log(paginas)
-            console.log(Object.entries(data).map(val => `${val[1].title}`))
         }).then(()=>setLoading(false))
         .catch(err => console.log(err))//navigate("/login", {replace: true}))
     }, []);
@@ -43,6 +47,13 @@ const Dashboard = (props) => {
 
         });
         return await request.json();
+    }
+    const getInfo = async () => {
+        const img = await fetch('http://127.0.0.1:5000/getInfo/' + empresa, {
+            'method' : 'GET'
+
+        });
+        return await img.json();
     }
     const handleBack = () => {
         const aux = index - 1;
@@ -61,9 +72,9 @@ const Dashboard = (props) => {
             ?<div className = "dashboard__container">
                 <div className = "dashboard-profile">
                     <p className = "dashboard-profile__title">Bienvenid@ {empresa}</p>
-                    <div className = "dashboard-profile__img-container"> <img src="https://pbs.twimg.com/media/FB3CuoqWUA4TRPo.png" className="dashboard-profile__img"></img></div>
+                    <div className = "dashboard-profile__img-container"> <img src={imgProfile} className="dashboard-profile__img"></img></div>
                     <div className="dashboard-profile__people-container">
-                        <p className="dashboard-profile__people">X personas reciben tus encuestas </p>
+                        <p className="dashboard-profile__people">{nUsers} personas reciben tus encuestas </p>
                         <button className="dashboard-forms__button-addPeople" onClick={e=>{
                                 e.stopPropagation();
                                 }} >
