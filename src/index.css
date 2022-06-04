@@ -817,8 +817,10 @@ input{
 }
 .dashboard-addPeople-container{
   align-items: left;
-  display: flex;
+  display: none;
+  transition: all .2s ease;
 }
+
 .dashboard-addPeople-input{
   height: 50px;
   font-size: 14px;
@@ -837,6 +839,7 @@ input{
   width: 90%;
   gap: 30px;
   max-width: 800px;
+
 }
 .dashboard-forms-title{
   color: white;

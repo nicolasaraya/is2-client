@@ -1,4 +1,4 @@
-import { faAngleDown, faAngleLeft, faAngleRight, faCirclePlus, faPlus, faSquarePollVertical, faUserPlus } from "@fortawesome/free-solid-svg-icons";
+import { faAngleDown, faAngleUp, faAngleLeft, faAngleRight, faCirclePlus, faPlus, faSquarePollVertical, faUserPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
@@ -15,6 +15,7 @@ const Dashboard = (props) => {
     const [paginas, setPaginas] = useState([]);
     const [nUsers, setNUsers] = useState(0);
     const [user, setUser] = useState("");
+    const [iconShow, setIconShow] = useState(faAngleDown);
     const elemPag = 5;
     const navigate = useNavigate();
     useEffect(() => {
@@ -85,6 +86,19 @@ const Dashboard = (props) => {
         else {
             alert("No ha ingresado un correo")
         }
+        
+    }
+    const showAddUser = () => {
+        if (document.getElementById("containerAddPeople").style.display === "none") {
+            document.getElementById("containerAddPeople").style.display = "flex";
+            setIconShow(faAngleUp)
+            
+            
+        } else {
+            document.getElementById("containerAddPeople").style.display = "none";
+            setIconShow(faAngleDown)
+        }
+        console.log("hola")
     }
 
 
@@ -100,11 +114,12 @@ const Dashboard = (props) => {
                         <p className="dashboard-profile__people">{nUsers} personas reciben tus encuestas </p>
                         <button className="dashboard-forms__button-addPeople" onClick={e=>{
                                 e.stopPropagation();
+                                showAddUser();
                                 }} >
-                            <FontAwesomeIcon icon={faAngleDown} />
+                            <FontAwesomeIcon icon={iconShow} />
                         </button>
                     </div>
-                    <div className="dashboard-addPeople-container">
+                    <div className="dashboard-addPeople-container" id = "containerAddPeople">
                         <input className="dashboard-addPeople-input" id = "user" maxLength={50} placeholder="añadirCorreo@correo.com" onChange={(e)=>setUser(e.target.value)}></input>
                         <button className="dashboard-forms__button-addPeople" onClick={e=>{
                                 
