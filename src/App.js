@@ -4,9 +4,10 @@ import Dashboard from './components/dashboard/dashboard';
 import {Route, Routes, useNavigate} from 'react-router-dom';
 import SubmitedForm from './components/new_form/submited-form';
 import SubmitedAnswer from './components/form/submited-answer';
-import ViewForm from './components/viewForm/form'
+import ViewForm from './components/viewForm/form';
+import Confirm from './components/confirm/confirm';
 import logo from './LOGO.png';
-import React from 'react'
+import React from 'react';
 function App() {
 
   const navigate = useNavigate();
@@ -19,12 +20,13 @@ function App() {
         <div className='background-pattern'></div>
         <div className='page-content'>
         <Routes>
-          <Route path='/' element={<NewForm/>}/>
+          <Route path= '/' element={<NewForm/>}/>
+          <Route path= '/unsuscribe/:md5' element={<Confirm/>}/>
           <Route path= '/form/:id' element={<Form/>}/>
           <Route path= '/getFormAnswers/:empresa/:id' element={<ViewForm/>}/>
           <Route path= '/dashboard/:empresa' element={<Dashboard/>}/>
-          <Route path='/submited-form/:formId' element={<SubmitedForm/>}/>
-          <Route path='/submited-answer' element={<SubmitedAnswer/>}/>
+          <Route path= '/submited-form/:formId' element={<SubmitedForm/>}/>
+          <Route path= '/submited-answer' element={<SubmitedAnswer/>}/>
         </Routes>
         </div>
     </div>

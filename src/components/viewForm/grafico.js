@@ -1,19 +1,17 @@
 import { PieChart, Pie, Sector, Cell, ResponsiveContainer } from 'recharts';
 import React from 'react'
-import { useNavigate } from "react-router-dom";
+import Loading from "../loading";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
 
 const Grafico = (props) => {
 
-    const {index, grafico, setIndex, setGrafico, data, getData, getIndex} =  {...props}
-
+    const {index, grafico, data} =  {...props}
+    const [loading, setLoading]  = useState(true);
     const [graficos,setGraficos] = useState([[{}]]);
     
     
 
     useEffect(() => {
-        getData().then(data => {
               let info = Object.entries(data)
               //console.log(info[1][1])
               //console.log(info[1][1][index])
@@ -30,8 +28,10 @@ const Grafico = (props) => {
                 graficos.push(grafico)
               }
               setGraficos(graficos)
-        })
-    }, []);
+        
+              setLoading(false);
+              
+    },[]);
 
 
     const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#FF8042"];
@@ -65,7 +65,7 @@ const Grafico = (props) => {
       return (
         <>
         {
-
+            loading===false?
                 <PieChart width={400} height={400}>
                   <Pie
                     data={graficos[index]}
@@ -82,6 +82,7 @@ const Grafico = (props) => {
                     ))}
                   </Pie>
                 </PieChart>
+                :<Loading></Loading>
 
         }
         
