@@ -1,3 +1,4 @@
+import React from 'react'
 import { useEffect, useState } from "react";
 import NewAlter from "./new-alter";
 import NewPreguntaHeader from "./new-pregunta-header";

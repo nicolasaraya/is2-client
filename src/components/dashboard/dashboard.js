@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Loading from "../loading";
 import DashboardCard from "./dashboard-form";
+import React from 'react'
+
 
 const Dashboard = (props) => {
     const {empresa} = useParams();

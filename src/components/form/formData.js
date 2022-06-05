@@ -1,3 +1,5 @@
+import React from 'react'
+
 const formData = {
     title: 'Encuesta 1',
     description: 'Esta es la descripcion de la encuesta 1 para la asignatura de ingenieria de software dos',
